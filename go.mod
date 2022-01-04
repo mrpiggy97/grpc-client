@@ -1,8 +1,8 @@
-module github.com/mrpiggy97/grpc-client
+module github.com/mrpiggy97/grpcClient
 
 go 1.16
 
 require (
+	github.com/mrpiggy97/sharedProtofiles v1.0.1
 	google.golang.org/grpc v1.42.0
-	google.golang.org/protobuf v1.27.1
 )
