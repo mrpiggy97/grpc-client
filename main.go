@@ -22,7 +22,9 @@ import (
 func main() {
 	//run server
 	var waiter *sync.WaitGroup = new(sync.WaitGroup)
-	connection, err := grpc.Dial("172.27.0.2:50051", grpc.WithInsecure())
+	// ip below refers to a docker container ip connected to the same
+	// docker network
+	connection, err := grpc.Dial("172.27.0.3:50051", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
@@ -50,6 +52,7 @@ func main() {
 	go consumeFormatting.ConsumeToLowerCase(waiter, formattingClient)
 	go consumeFormatting.ConsumeToUpperCase(waiter, formattingClient)
 	go consumeCalculation.ConsumeSumStream(waiter, calculationClient)
+	go consumeNum.ConsumeSum(waiter, numClient)
 	time.Sleep(time.Second * 1)
 	waiter.Wait()
 }
