@@ -17,6 +17,7 @@ import (
 	"github.com/mrpiggy97/grpcClient/consumeNum"
 	"github.com/mrpiggy97/grpcClient/consumeRandomNumber"
 	"github.com/mrpiggy97/grpcClient/consumeUser"
+	"github.com/mrpiggy97/grpcClient/interceptors"
 )
 
 func main() {
@@ -24,7 +25,11 @@ func main() {
 	var waiter *sync.WaitGroup = new(sync.WaitGroup)
 	// ip below refers to a docker container ip connected to the same
 	// docker network
-	connection, err := grpc.Dial("172.27.0.3:50051", grpc.WithInsecure())
+	connection, err := grpc.Dial(
+		"172.27.0.2:50051",
+		grpc.WithInsecure(),
+		interceptors.WithAuthInterceptor(),
+	)
 	if err != nil {
 		panic(err)
 	}
