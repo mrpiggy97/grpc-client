@@ -29,6 +29,8 @@ func main() {
 		"172.27.0.2:50051",
 		grpc.WithInsecure(),
 		interceptors.WithAuthInterceptor(),
+		interceptors.WithClientLoggerInterceptor(),
+		interceptors.WithMessageInterceptor(),
 	)
 	if err != nil {
 		panic(err)
