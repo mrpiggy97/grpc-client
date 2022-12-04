@@ -26,7 +26,7 @@ func main() {
 	// ip below refers to a docker container ip connected to the same
 	// docker network
 	connection, err := grpc.Dial(
-		"172.27.0.2:50051",
+		"grpc-server:50051",
 		grpc.WithInsecure(),
 		interceptors.WithAuthInterceptor(),
 		interceptors.WithClientLoggerInterceptor(),

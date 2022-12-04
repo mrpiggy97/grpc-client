@@ -1,0 +1,12 @@
+version: "3.0"
+services:
+  grpc-server:
+    image: fabianjesusrivas/grpc-example:v1.0.0
+    environment:
+      - PORT=50051
+    networks:
+      - grpc
+
+networks:
+  grpc:
+    external: true
